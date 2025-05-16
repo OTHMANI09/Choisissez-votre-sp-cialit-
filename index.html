@@ -1025,13 +1025,13 @@
                 };
                 
                 // إرسال البيانات باستخدام fetch API
-                const response = await fetch(googleScriptURL, {
-                    method: 'POST',
-                    body: JSON.stringify(sheetData),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
+const formData = new FormData();
+formData.append("data", JSON.stringify(sheetData));
+
+await fetch(googleScriptURL, {
+    method: 'POST',
+    body: formData
+});
                 
                 if (!response.ok) {
                     throw new Error('حدث خطأ أثناء إرسال البيانات');
